@@ -7,7 +7,7 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="gnzh"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -84,6 +84,20 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+
 # for setting history length see HISTSIZE and HISTFILESIZE in zsh
 HISTSIZE=10000
 HISTFILESIZE=20000
@@ -91,14 +105,24 @@ HISTFILESIZE=20000
 
 #login art
 cat << "EOF"
- _   _      _ _                 _                        
-| | | |    | | |               | |     _                  
-| |_| | ___| | | ___    _______| |__  (_)   
-|  _  |/ _ \ | |/ _ \  |_  / __| '_ \      
-| | | |  __/ | | (_) |  / /\__ \ | | | _   
-|_| |_|\___|_|_|\___/  /___|___/_| |_|| )  
-                                      |/              
-                                                       
+
+██╗  ██╗███████╗██╗     ██╗      ██████╗        ███████╗███████╗██╗  ██╗   
+██║  ██║██╔════╝██║     ██║     ██╔═══██╗       ╚══███╔╝██╔════╝██║  ██║██╗
+███████║█████╗  ██║     ██║     ██║   ██║         ███╔╝ ███████╗███████║╚═╝
+██╔══██║██╔══╝  ██║     ██║     ██║   ██║        ███╔╝  ╚════██║██╔══██║▄█╗
+██║  ██║███████╗███████╗███████╗╚██████╔╝▄█╗    ███████╗███████║██║  ██║▀═╝
+╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝    ╚══════╝╚══════╝╚═╝  ╚═╝   
+
 EOF
 
-tmux new -s 'rxvt-root'
+if tty | grep pts ; then
+    if ! [ -n "$TMUX" ]; then
+        tmux new -s "rxvt-root";
+    fi
+else
+    echo "not in PTS";
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

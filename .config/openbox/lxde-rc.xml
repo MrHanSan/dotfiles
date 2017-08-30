@@ -438,13 +438,13 @@
     <!-- Lock the screen on Ctrl + Alt + l-->
     <keybind key="W-F1">
       <action name="Execute">
-        <command>lxsession-default lock</command>
+        <command>xscreensaver-command -lock</command>
       </action>
     </keybind>
     <!-- pm-utils sleep  -->
     <keybind key="W-A-F1">
       <action name="Execute">
-        <command>sh -c "sudo pm-suspend"</command>
+        <command>sh -c "xscreensaver-command -lock ; sudo pm-suspend"</command>
       </action>
     </keybind>
     <!-- Keybinding for Volume management -->
@@ -805,6 +805,9 @@
       </mousebind>
     </context>
     <context name="Desktop">
+      
+      <!-- Comment out scrolling between desktops -->
+      <!--
       <mousebind button="Up" action="Click">
         <action name="GoToDesktop">
           <to>previous</to>
@@ -815,6 +818,8 @@
           <to>next</to>
         </action>
       </mousebind>
+      -->
+
       <mousebind button="A-Up" action="Click">
         <action name="GoToDesktop">
           <to>previous</to>
