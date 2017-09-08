@@ -4,6 +4,8 @@ set nu
 set ruler
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
+syntax on
+
 " 1 or 0 -> blinking block
 " 2 -> solid block
 " 3 -> blinking underscore
@@ -28,3 +30,6 @@ set undoreload=10000
 
 set backupdir=~/.vim/backup,~/.vim,.
 set directory=~/.vim/backup,~/.vim,.
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %

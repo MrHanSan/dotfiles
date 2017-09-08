@@ -3,6 +3,9 @@ Xft.dpi: 100
 
 !! rxvt-unicode config. start
 URxvt.font: xft:Inconsolata:size=10.5:antialias=true
+!URxvt.font: xft:System San Francisco Display:size=10:antialias=true
+!URxvt.letterSpace: -5
+
 URxvt.scrollBar: false
 URxvt.scrollStyle: rxvt
 

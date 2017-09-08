@@ -1,0 +1,8 @@
+hidden
+sh
+ranger --copy-config=all
+open_with 
+open_with w3m
+open_with 
+open_with 
+open_with :q
