@@ -1,8 +1,23 @@
+" Vundle setup
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Vundle plugins
+Plugin 'VundleVim/Vundle.vim' " Vundle manages Vundle
+Plugin 'airblade/vim-gitgutter' " GitGutter diff while you diff
+
+call vundle#end()
+filetype plugin indent on
+
 set relativenumber
 set autoindent
 set nu
 set ruler
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+"set hlsearch
 
 syntax on
 
@@ -19,6 +34,7 @@ if &term == 'rxvt-unicode-256color'
 endif
 
 if exists('$TMUX')
+    set term=screen-256color
     let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
     let &t_EI = "\<Esc>Ptmux;\<Esc>\e[1 q\<Esc>\\"
 endif
@@ -33,3 +49,12 @@ set directory=~/.vim/backup,~/.vim,.
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+
+" Hilight limits
+highlight Over80 ctermbg=blue ctermfg=White guibg=#aa0000
+highlight Over120 ctermbg=88 ctermfg=White guibg=#592929
+call matchadd("Over80", '\%81v.', -1)
+call matchadd("Over120", '\%121v.', -1)
+
+" Test line ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||oOo||
+" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||oOo|||||||||||

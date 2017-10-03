@@ -37,11 +37,13 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# changed dmenu to rofi, uncomment above, and comment 
+# rofi line at end of file to change back
 
 # change focus
 bindsym $mod+j focus left
@@ -93,33 +95,53 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 set $workspace1 "1:  Terminals"
-set $workspace2 "2:  Browser "
+set $workspace2 "2:  Browser"
+set $workspace3 "3:  Dev Browser"
+set $workspace4 "4:  Dev Env"
+set $workspace5 "5:  Dev Term"
+set $workspace6 "6:  Nothing" 
+set $workspace7 "7:  Chat"
+set $workspace8 "8:  Virtual"
+set $workspace9 "9:  Media"
+set $workspace10 "10:  Files"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
 
+# Start once on workspace
+# exec --no-startup-id i3-msg "workspace $workspace6; exec vivaldi-stable --incognito; workspace $workspace6"
 
+# Start always on desktop
+assign [class="jetbrains-pycharm"] $workspace4
+assign [class="VirtualBox"] $workspace8 
+
+for_window [class="VirtualBox"] layout tabbed 
+for_window [class="Spotify"] move to workspace $workspace9
+
+for_window [title="^127.0.0.1$"] move to workspace $workspace3
+for_window [title="YouTube$"] move to workspace $workspace9
+for_window [title="^ranger"] move to workspace $workspace10
 # assign [class="URxvt"] $workspace1
 
 # reload the configuration file
@@ -127,7 +149,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -155,31 +178,80 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+
+set $bg-color            #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
+hide_edge_borders both
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+# bar
 bar {
-        status_command i3status
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    position top
+    colors {
+        background $bg-color
+        separator #757575
+        #                  border             background         text
+        focused_workspace  $bg-color          $bg-color          $text-color
+        inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+    }
 }
 
+new_window none
+
+# Set wallpaper
+# exec_always feh --bg-scale /share/red-desktop.jpg
+exec_always wal -i /share/pictures/wallpapers/processor_robot.jpg -a 80
 
 # Mod1 = Alt
 
 # Lock and sleep
-bindsym $mod+F1 exec i3lock 
-bindsym $mod+Mod1+F1 exec systemctl suspend && i3lock
+set $lock-res 20
+set $lock-ico ~/share/pictures/bw_lock_l.png
+
+bindsym $mod+F1 exec ~/.config/i3/lock.sh -s -b -g -o $lock-ico -p -P $lock-res
+bindsym $mod+Mod1+F1 exec systemctl suspend && ~/.config/i3/lock.sh -s -g -b -o $lock-ico -p -P $lock-res
 
 # Sreen brightness controls
-bindsym $mod+Mod1+Up exec light -A 5 # increase screen brightness
-bindsym $mod+Mod1+Down exec light -U 5 # decrease screen brightness
+bindsym $mod+Mod1+Up exec light -A 2 # increase screen brightness
+bindsym $mod+Mod1+Down exec light -U 2 # decrease screen brightness
 
 # Pulse Audio controls
-bindsym $mod+Mod1+Right exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym $mod+Mod1+Left exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# bindsym $mod+Mod1+Right exec pactl set-sink-volume 0 +1% #increase sound volume
+bindsym $mod+Mod1+Right exec amixer set Master 1%+ #increase sound volume
 
-# Start terminal on desktop launch
-exec urxvt
+#bindsym $mod+Mod1+Left exec pactl set-sink-volume 0 -1% #decrease sound volume
+bindsym $mod+Mod1+Left exec amixer set Master 1%- #increase sound volume
 
-# Set wallpaper
-exec_always feh --bg-scale /share/red-desktop.jpg
+# bindsym $mod+Mod1+Left+Right exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# bindsym $mod+Mod1+m exec amixer -D pulse set Master 1+ toggle
+bindsym $mod+Mod1+m exec amixer set Master 0
+
+# Rofi bind, changed from dmenu
+bindsym $mod+d exec ~/.config/i3/rofi.sh
+#rofi -show combi \
+#    -lines 3 -eh 2 -width 100 -padding 100 \
+#    -location 2 -bw 0 -font "System San Francisco Display 18" -normal-window
+
+
+# Start shit on desktop launch
+# exec urxvt
+exec spotify
+exec urxvt -e ~/tmux_scripts/ranger.sh
+
+# Start compton
+exec compton --no-fading-openclose
 

@@ -129,3 +129,6 @@ export NVM_DIR="$HOME/.nvm"
 
 eval "$(direnv hook zsh)"
 
+PATH="${PATH}:${HOME}/.local/bin/"
+
+

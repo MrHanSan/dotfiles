@@ -1,5 +1,5 @@
 #!/bin/sh
-charm &
+#charm &
 
 if ! [ -n "$TMUX" ] ; then
     tmux new -ds 'ow4'

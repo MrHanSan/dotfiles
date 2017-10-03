@@ -61,3 +61,15 @@ URxvt.pointerBlank: true
 !! white dark/light
 *color7: #eee8d5
 *color15: #fdf6e3
+
+! Rofi config
+rofi.color-enabled: true
+
+! State:           'bg',           'fg',           'bgalt',        'hlbg',         'hlfg'
+rofi.color-normal: argb:00000000,  argb:a0f3f4f5,  argb:00000000,  argb:00000000,  argb:a09575cd
+rofi.color-urgent: argb:00000000,  argb:a0f3f4f5,  argb:00000000,  argb:000f0000,  argb:a09575cd
+rofi.color-active: argb:00000000,  argb:a0f3f4f5,  argb:00000000,  argb:00000000,  argb:a09575cd
+
+!                  'background',  'border',       'separator'
+rofi.color-window: argb:402f343f, argb:a02f343f,  argb:a02f343f
+rofi.separator-style: none
