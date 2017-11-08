@@ -196,6 +196,7 @@
 			],
 			"file_history":
 			[
+				"/home/hans/share/skole/kog_ark/o3kok.py",
 				"/share/dotfiles/arch/.config/sublime-text-3/Packages/User/Package Control.sublime-settings"
 			],
 			"find":
@@ -307,7 +308,7 @@
 				"height": 0.0
 			},
 			"pinned_build_system": "",
-			"position": "0,0,0,0,0,0,23,1920,1080,1920,1080",
+			"position": "0,0,0,0,0,960,23,1920,1080,1920,1080",
 			"project": "",
 			"replace":
 			{

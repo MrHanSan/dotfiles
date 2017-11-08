@@ -140,6 +140,9 @@ for_window [class="VirtualBox"] layout tabbed
 for_window [class="Spotify"] move to workspace $workspace9
 
 for_window [title="^127.0.0.1$"] move to workspace $workspace3
+for_window [title="^dev.sh$"] move to workspace $workspace5
+for_window [title="^WeeChat.sh$"] move to workspace $workspace7
+for_window [title="^WeeChat 1.9.1$"] move to workspace $workspace7
 for_window [title="YouTube$"] move to workspace $workspace9
 for_window [title="^ranger"] move to workspace $workspace10
 # assign [class="URxvt"] $workspace1
@@ -214,8 +217,8 @@ new_window none
 
 # Set wallpaper
 # exec_always feh --bg-scale /share/red-desktop.jpg
-exec_always wal -i /share/pictures/wallpapers/processor_robot.jpg -a 80
-
+#exec_always wal -i /share/pictures/wallpapers/processor_robot.jpg -a 90
+exec_always wal -i /share/pictures/wallpapers/from-imgur/color-planes.jpg -a 90
 # Mod1 = Alt
 
 # Lock and sleep
@@ -250,7 +253,11 @@ bindsym $mod+d exec ~/.config/i3/rofi.sh
 # Start shit on desktop launch
 # exec urxvt
 exec spotify
-exec urxvt -e ~/tmux_scripts/ranger.sh
+exec ranger
+# exec urxvt -e ~/tmux_scripts/ranger.sh
+exec urxvt -e ~/tmux_scripts/WeeChat.sh
+exec urxvt -e ~/tmux_scripts/dev.sh
+exec urxvt -e ~/tmux_scripts/rxvt-root.sh
 
 # Start compton
 exec compton --no-fading-openclose

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-session="ranger"
+session="WeeChat"
 
 if ! [ -n "$TMUX" ] ; then
     tmux new -ds $session
@@ -14,11 +14,10 @@ window=${session}:0
 pane=${window}.0
 
 tmux send-keys -t "$pane" "cd ~" enter
-tmux send-keys -t "$pane" "clear && ranger" enter
+tmux send-keys -t "$pane" "clear && weechat" enter
 
 if ! [ -n "$TMUX" ] ; then
-    tmux a -t ranger
+    tmux a -t WeeChat
 else
     echo "You are already in a tmux sesion"
 fi
-

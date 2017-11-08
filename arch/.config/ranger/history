@@ -6,6 +6,10 @@ open_with w3m
 open_with 
 open_with 
 open_with :q
-delete
 
 open_wiq:qth 
+openq_with 
+search qq
+shell qqq
+open_with q
+delete
