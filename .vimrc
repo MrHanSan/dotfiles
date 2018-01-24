@@ -92,9 +92,9 @@ cmap w!! w !sudo tee > /dev/null %
 highlight Over80 ctermbg=blue ctermfg=White guibg=#aa0000
 highlight Over100 ctermbg=208 ctermfg=White guibg=#aa0000
 highlight Over120 ctermbg=88 ctermfg=White guibg=#592929
-call matchadd("Over80", '\%81v.', -1)
-call matchadd("Over100", '\%101v.', -1)
-call matchadd("Over120", '\%121v.', -1)
+call matchadd("Over80", '\%80v.', -1)
+call matchadd("Over100", '\%100v.', -1)
+call matchadd("Over120", '\%120v.', -1)
 
 " Test line ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||oOo||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||oOo|||||||||||

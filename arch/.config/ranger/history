@@ -3,7 +3,6 @@ sh
 ranger --copy-config=all
 open_with 
 open_with w3m
-open_with 
 open_with 
 open_with :q
 
@@ -13,3 +12,6 @@ search qq
 shell qqq
 open_with q
 delete
+open_with 
+open_with vim
+open_with less

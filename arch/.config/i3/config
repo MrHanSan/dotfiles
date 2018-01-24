@@ -234,14 +234,14 @@ bindsym $mod+Mod1+Down exec light -U 2 # decrease screen brightness
 
 # Pulse Audio controls
 # bindsym $mod+Mod1+Right exec pactl set-sink-volume 0 +1% #increase sound volume
-bindsym $mod+Mod1+Right exec amixer set Master 1%+ #increase sound volume
+bindsym $mod+Mod1+Right exec amixer set Master unmute 1%+ #increase sound volume
 
 #bindsym $mod+Mod1+Left exec pactl set-sink-volume 0 -1% #decrease sound volume
 bindsym $mod+Mod1+Left exec amixer set Master 1%- #increase sound volume
 
 # bindsym $mod+Mod1+Left+Right exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 # bindsym $mod+Mod1+m exec amixer -D pulse set Master 1+ toggle
-bindsym $mod+Mod1+m exec amixer set Master 0
+bindsym $mod+Mod1+m exec amixer sset Master mute
 
 # Rofi bind, changed from dmenu
 bindsym $mod+d exec ~/.config/i3/rofi.sh
@@ -253,9 +253,9 @@ bindsym $mod+d exec ~/.config/i3/rofi.sh
 # Start shit on desktop launch
 # exec urxvt
 exec spotify
-exec ranger
+exec urxvt -e ranger
 # exec urxvt -e ~/tmux_scripts/ranger.sh
-exec urxvt -e ~/tmux_scripts/WeeChat.sh
+# exec urxvt -e ~/tmux_scripts/WeeChat.sh
 exec urxvt -e ~/tmux_scripts/dev.sh
 exec urxvt -e ~/tmux_scripts/rxvt-root.sh
 

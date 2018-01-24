@@ -1,13 +1,14 @@
-vivaldi/
-VirtualBox/
-spotify/
-vlc/
+bin/
 Cache/
 cache/
-bin/
 Packages/
 packages/
-
+Postman/
+spotify/
+vcmi/
+VirtualBox/
+vivaldi/
+vlc/
 
 # Created by https://www.gitignore.io/api/linux,archlinuxpackages
 

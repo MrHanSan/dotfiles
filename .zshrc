@@ -129,9 +129,10 @@ export NVM_DIR="$HOME/.nvm"
 
 
 export LESS='-R'
-export LESSOPEN='|~/.lessfilter %s'
 
 eval "$(direnv hook zsh)"
+
+alias vir="vim -R"
 
 PATH="${PATH}:${HOME}/.local/bin/"
 
