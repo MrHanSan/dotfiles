@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/hans/.oh-my-zsh
+  export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -134,6 +134,10 @@ eval "$(direnv hook zsh)"
 
 alias vir="vim -R"
 
-PATH="${PATH}:${HOME}/.local/bin/"
+alias netres="sudo ip link set wlp8s0 down && sudo systemctl restart netctl-auto@wlp8s0.service && \
+    sudo ip link set wlp8s0 up"
 
+alias ow4="exec ~/tmux_scripts/ow4.sh"
+
+PATH="${PATH}:${HOME}/.local/bin/"
 

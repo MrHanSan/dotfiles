@@ -24,5 +24,5 @@ fi
 mkdir -p $HOME/.vim/undo
 mkdir -p $HOME/.vim/backup
 
-./programs/setlayout/setlayout 0 2 2 0
+sh -c "$HOME/programs/setlayout/setlayout 0 2 2 0"
 

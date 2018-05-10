@@ -522,7 +522,6 @@
       </action>
     </keybind>
     <!-- User added commands -->
-
     <!-- rxvt-unicode keys for kuake-like behavor  -->
     <!-- first keybind: super + T launch new instance -->
     <!-- check if C-A-T is bound, only one is needed, but both is possible  -->
@@ -539,7 +538,6 @@
         <execute>~/.config/rxvt/urxvtq</execute>
       </action>
     </keybind>
-
   </keyboard>
   <mouse>
     <!--
@@ -805,7 +803,6 @@
       </mousebind>
     </context>
     <context name="Desktop">
-      
       <!-- Comment out scrolling between desktops -->
       <!--
       <mousebind button="Up" action="Click">
@@ -819,7 +816,6 @@
         </action>
       </mousebind>
       -->
-
       <mousebind button="A-Up" action="Click">
         <action name="GoToDesktop">
           <to>previous</to>
@@ -1028,50 +1024,42 @@
       <decor>no</decor>
       <maximized>no</maximized>
     </application>
-
     <application class="Sublime*">
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-
     <application class="*VirtualBox*">
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    
     <application title="Unnamed Window">
       <!-- spotify  -->
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    
     <application class="Google-chrome*">
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    
     <application class="Vivaldi-*">
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    
     <application class="Firefox*">
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-
     <application name="rxvt-*">
       <decor>no</decor>
       <maximized>yes</maximized>
       <desktop>all</desktop>
     </application>
-
     <!-- custom kuake-like behavor for rxct-unicode  -->
     <application name="urxvtq">
       <decor>no</decor>
       <position force="yes">
         <x>center</x>
-	<y>0</y>
+        <y>0</y>
       </position>
       <desktop>all</desktop>
       <layer>above</layer>
@@ -1079,6 +1067,5 @@
       <skip_taskbar>yes</skip_taskbar>
       <maximized>yes</maximized>
     </application>
-
   </applications>
 </openbox_config>

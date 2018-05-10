@@ -6,9 +6,10 @@
 #
 
 # i3 config file (v4)
-#
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# Mod1 = Alt
+# Mod4 = Win
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -42,7 +43,7 @@ bindsym $mod+Shift+q kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-# changed dmenu to rofi, uncomment above, and comment 
+# changed dmenu to rofi, uncomment above, and comment
 # rofi line at end of file to change back
 
 # change focus
@@ -56,6 +57,10 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+
+# Move left right with alt tab
+bindsym Mod1+Tab focus left
+bindsym Mod1+Shift+Tab focus right
 
 # move focused window
 bindsym $mod+Shift+j move left
@@ -99,7 +104,7 @@ set $workspace2 "2:  Browser"
 set $workspace3 "3:  Dev Browser"
 set $workspace4 "4:  Dev Env"
 set $workspace5 "5:  Dev Term"
-set $workspace6 "6:  Nothing" 
+set $workspace6 "6:  Nothing"
 set $workspace7 "7:  Chat"
 set $workspace8 "8:  Virtual"
 set $workspace9 "9:  Media"
@@ -129,17 +134,21 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
+# Goto next/ prev workspace
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
 # Start once on workspace
 # exec --no-startup-id i3-msg "workspace $workspace6; exec vivaldi-stable --incognito; workspace $workspace6"
 
 # Start always on desktop
 assign [class="jetbrains-pycharm"] $workspace4
-assign [class="VirtualBox"] $workspace8 
+assign [class="VirtualBox"] $workspace8
 
-for_window [class="VirtualBox"] layout tabbed 
+for_window [class="VirtualBox"] layout tabbed
 for_window [class="Spotify"] move to workspace $workspace9
 
-for_window [title="^127.0.0.1$"] move to workspace $workspace3
+for_window [title="^127.0.0.1"] move to workspace $workspace3
 for_window [title="^dev.sh$"] move to workspace $workspace5
 for_window [title="^WeeChat.sh$"] move to workspace $workspace7
 for_window [title="^WeeChat 1.9.1$"] move to workspace $workspace7
@@ -217,9 +226,10 @@ new_window none
 
 # Set wallpaper
 # exec_always feh --bg-scale /share/red-desktop.jpg
-#exec_always wal -i /share/pictures/wallpapers/processor_robot.jpg -a 90
-exec_always wal -i /share/pictures/wallpapers/from-imgur/color-planes.jpg -a 90
-# Mod1 = Alt
+# exec_always wal -i /share/pictures/wallpapers/processor_robot.jpg -a 90
+exec_always wal -i /share/pictures/wallpapers/small-memmory.jpg
+# exec_always wal -i /share/pictures/wallpapers/from-imgur/color-planes.jpg -a 90
+# exec_always wal -i /share/pictures/wallpapers/from-imgur/square-bar.png -a 90
 
 # Lock and sleep
 set $lock-res 20
@@ -240,8 +250,15 @@ bindsym $mod+Mod1+Right exec amixer set Master unmute 1%+ #increase sound volume
 bindsym $mod+Mod1+Left exec amixer set Master 1%- #increase sound volume
 
 # bindsym $mod+Mod1+Left+Right exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-# bindsym $mod+Mod1+m exec amixer -D pulse set Master 1+ toggle
-bindsym $mod+Mod1+m exec amixer sset Master mute
+#bindsym $mod+Mod1+m exec amixer sset Master mute
+bindsym $mod+Mod1+m exec amixer -D pulse set Master 1+ toggle
+
+# bind media keys
+bindcode $mod+110 exec playerctl play
+bindcode $mod+115 exec playerctl pause
+bindcode $mod+117 exec playerctl next
+bindcode $mod+112 exec playerctl previous
+
 
 # Rofi bind, changed from dmenu
 bindsym $mod+d exec ~/.config/i3/rofi.sh
@@ -252,7 +269,7 @@ bindsym $mod+d exec ~/.config/i3/rofi.sh
 
 # Start shit on desktop launch
 # exec urxvt
-exec spotify
+# exec spotify
 exec urxvt -e ranger
 # exec urxvt -e ~/tmux_scripts/ranger.sh
 # exec urxvt -e ~/tmux_scripts/WeeChat.sh
@@ -260,5 +277,5 @@ exec urxvt -e ~/tmux_scripts/dev.sh
 exec urxvt -e ~/tmux_scripts/rxvt-root.sh
 
 # Start compton
-exec compton --no-fading-openclose
+#exec compton --no-fading-openclose
 

@@ -43,7 +43,7 @@ let g:airline#extensions#ale#enabled = 1
 "let g:ale_fix_on_save = 0
 
 set list
-set listchars=tab:┊\ 
+set listchars=tab:┊\
 
 set relativenumber
 set autoindent
@@ -115,3 +115,4 @@ call matchadd("Tabs", '\t', -1)
  	" 	nnq  
     " as
         " a
+
