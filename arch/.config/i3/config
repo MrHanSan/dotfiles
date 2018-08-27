@@ -97,6 +97,10 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+# Change keyboard layout, shift + alt
+exec_always --no-startup-id "setxkbmap -layout no,us -option grp:alt_shift_toggle"
+
+
 # focus the child container
 #bindsym $mod+d focus child
 set $workspace1 "1:  Terminals"
@@ -227,7 +231,8 @@ new_window none
 # Set wallpaper
 # exec_always feh --bg-scale /share/red-desktop.jpg
 # exec_always wal -i /share/pictures/wallpapers/processor_robot.jpg -a 90
-exec_always wal -i /share/pictures/wallpapers/small-memmory.jpg
+# exec_always wal -i /share/pictures/wallpapers/small-memmory.jpg
+exec_always wal -i /share/pictures/wallpapers/tycho_awake_dark.jpg
 # exec_always wal -i /share/pictures/wallpapers/from-imgur/color-planes.jpg -a 90
 # exec_always wal -i /share/pictures/wallpapers/from-imgur/square-bar.png -a 90
 

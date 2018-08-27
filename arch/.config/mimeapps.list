@@ -1,3 +1,5 @@
-
 [Default Applications]
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+
+[Added Associations]
+application/vnd.openxmlformats-officedocument.presentationml.presentation=firefox.desktop;

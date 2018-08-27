@@ -150,12 +150,12 @@
 			"buffers":
 			[
 				{
-					"file": "/share/skole/web_ut/proj_3/it2810-webutvikling-h17-prosjekt-3-group-29/server.js",
+					"contents": "Formelle krav: Omfang: 6–7 sider, eksklusiv  forside,  innholdsfortegnelse  og  referanseliste.\nBrødtekst  i  punktstørrelse  12 Times New Roman(eller tilsvarende), marg 2,5 cmog linjeavstand halvannen. \nSeparat  forside  med kandidatnummer (ikke  navn),  emnekode og eksamenssemester/år,  \nhvert  påfølgende ark  skal  merkes  KULT2204 og  kandidatnummerøverst  til  høyre  (kan  gjøres  som  topptekst),  \nhusk  side-nummerering!\nBruk av pensumslitteratur i besvarelsen er obligatorisk, gjenbruk av tekst fra øvinger i emnet er tillatt. Bruk av forelesningsnotatene er tillatt, men referanser til forelesningsnotater er tiltenkt som støtte til pensumlitteratur og bør ikke dominere oppgaven. \nFormater litteraturhenvisningerenhetligog slik at de er fullstendige. Mer info her:  http://www.ntnu.no/viko/oppgave/refererekilder.  Se også nettsiden www.kultskriv.weebly.com for tips om struktur, referansestiler og akademiske sjanger.",
 					"settings":
 					{
-						"buffer_size": 482,
-						"encoding": "UTF-8",
-						"line_ending": "Unix"
+						"buffer_size": 932,
+						"line_ending": "Unix",
+						"name": "Formelle krav: Omfang: 6–7 sider, eksklusiv  forsi"
 					}
 				}
 			],
@@ -166,7 +166,7 @@
 			"build_varint": "",
 			"command_palette":
 			{
-				"height": 221.0,
+				"height": 392.0,
 				"last_filter": "",
 				"selected_items":
 				[
@@ -191,17 +191,20 @@
 			},
 			"expanded_folders":
 			[
-				"/share/skole/web_ut/proj_3/it2810-webutvikling-h17-prosjekt-3-group-29",
-				"/share/skole/web_ut/proj_3/it2810-webutvikling-h17-prosjekt-3-group-29/builddir"
+				"/share/skole/web_ut/proj_3/it2810-webutvikling-h17-prosjekt-3-group-29"
 			],
 			"file_history":
 			[
+				"/share/downloads/9.88 Kvaal.txt",
+				"/home/hans/share/skole/web_ut/proj_4/produkter.csv",
+				"/share/downloads/kult_ppt/KULT2204_V18.TXT",
+				"/share/skole/web_ut/proj_3/it2810-webutvikling-h17-prosjekt-3-group-29/server.js",
 				"/home/hans/share/skole/kog_ark/o3kok.py",
 				"/share/dotfiles/arch/.config/sublime-text-3/Packages/User/Package Control.sublime-settings"
 			],
 			"find":
 			{
-				"height": 0.0
+				"height": 39.0
 			},
 			"find_in_files":
 			{
@@ -215,6 +218,8 @@
 				"case_sensitive": false,
 				"find_history":
 				[
+					"bruker",
+					"skri"
 				],
 				"highlight": true,
 				"in_selection": false,
@@ -243,24 +248,24 @@
 					[
 						{
 							"buffer": 0,
-							"file": "/share/skole/web_ut/proj_3/it2810-webutvikling-h17-prosjekt-3-group-29/server.js",
 							"semi_transient": false,
 							"settings":
 							{
-								"buffer_size": 482,
+								"buffer_size": 932,
 								"regions":
 								{
 								},
 								"selection":
 								[
 									[
-										0,
-										0
+										932,
+										932
 									]
 								],
 								"settings":
 								{
-									"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+									"auto_name": "Formelle krav: Omfang: 6–7 sider, eksklusiv  forsi",
+									"syntax": "Packages/Text/Plain text.tmLanguage"
 								},
 								"translation.x": 0.0,
 								"translation.y": 0.0,
@@ -274,7 +279,7 @@
 			],
 			"incremental_find":
 			{
-				"height": 0.0
+				"height": 25.0
 			},
 			"input":
 			{
@@ -308,11 +313,11 @@
 				"height": 0.0
 			},
 			"pinned_build_system": "",
-			"position": "0,0,0,0,0,960,23,1920,1080,1920,1080",
+			"position": "0,0,0,0,0,0,45,1920,1080,1920,1080",
 			"project": "",
 			"replace":
 			{
-				"height": 0.0
+				"height": 46.0
 			},
 			"save_all_on_build": true,
 			"select_file":
