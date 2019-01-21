@@ -99,7 +99,7 @@ fi
 
 
 # for setting history length see HISTSIZE and HISTFILESIZE in zsh
-HISTSIZE=10000
+HISTSIZE=100000
 HISTFILESIZE=20000
 
 
@@ -128,13 +128,20 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
+
 export LESS='-R'
+export BROWSER='vivaldi'
 
 eval "$(direnv hook zsh)"
 
+alias python="python3"
 alias vir="vim -R"
+alias netflix="firefox --new-window netflix.com &"
+alias blb="$BROWSER --new-window iblack.sexy &"
+alias yt="$BROWSER --new-window youtube.com &"
+alias br="$BROWSER"
 
-alias netres="sudo ip link set wlp8s0 down && sudo systemctl restart netctl-auto@wlp8s0.service && \
+alias netres="sudo ip link set wlp8s0 down && sudo systemctl restart wpa_supplicant@wlp8s0.service && \
     sudo ip link set wlp8s0 up"
 
 alias ow4="exec ~/tmux_scripts/ow4.sh"

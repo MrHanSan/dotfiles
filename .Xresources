@@ -1,9 +1,9 @@
 !! set dpi for x
-Xft.dpi: 100
+Xft.dpi: 160
 
 !! rxvt-unicode config. start
-URxvt.font: xft:Inconsolata:size=10.5:antialias=true
-!URxvt.font: xft:System San Francisco Display:size=10:antialias=true
+#URxvt.font: xft:Inconsolata:size=10.5:antialias=true
+URxvt.font: xft:Hack:size=11:antialias=true
 !URxvt.letterSpace: -5
 
 URxvt.scrollBar: false
@@ -52,7 +52,7 @@ URxvt.pointerBlank: true
 !! cyan
 *color6: #2aa198
 
-!! purple, switched from cyan 
+!! purple, switched from cyan
 !*color6: #891AA2
 
 !! red used for symlinks and comments
