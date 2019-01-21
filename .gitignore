@@ -43,3 +43,12 @@ src/
 .nfs*
 
 # End of https://www.gitignore.io/api/linux,archlinuxpackages
+
+/.config/vivaldi/*
+/.config/ranger/
+/.config/chromium/
+/.config/sublime-text-3/
+/.config/direnv/
+
+.config/vivaldi/
+
