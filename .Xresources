@@ -1,5 +1,5 @@
 !! set dpi for x
-Xft.dpi: 160
+!Xft.dpi: 100
 
 !! rxvt-unicode config. start
 #URxvt.font: xft:Inconsolata:size=10.5:antialias=true
