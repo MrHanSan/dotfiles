@@ -112,7 +112,7 @@ call matchadd("ExtraWhitespace", ' \+\ze\t', -1)
 call matchadd("Tabs", '\t', -1)
 
 " Test line             ||||| 
- 	" 	nnq  
-    " as
-        " a
+ 	" 	test  
+    "tst
+        "tst
 

@@ -21,10 +21,16 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
 mkdir -p $HOME/.vim/undo
 mkdir -p $HOME/.vim/backup
 
 # sh -c "$HOME/programs/setlayout/setlayout 0 2 2 0"
 
 export TERMINAL=urxvt
+#export XDG_CURRENT_DESKTOP=Gnome
 

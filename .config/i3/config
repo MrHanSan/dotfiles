@@ -98,7 +98,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # Change keyboard layout, shift + alt
-exec_always --no-startup-id "setxkbmap -layout no,us -option grp:alt_shift_toggle"
+exec_always --no-startup-id "setxkbmap -layout us,no -option grp:alt_shift_toggle"
 
 
 # focus the child container
@@ -228,14 +228,6 @@ bar {
 
 new_window none
 
-# Set wallpaper
-# exec_always feh --bg-scale /share/red-desktop.jpg
-# exec_always wal -i /share/pictures/wallpapers/processor_robot.jpg -a 90
-# exec_always wal -i /share/pictures/wallpapers/small-memmory.jpg
-exec_always wal -i /share/pictures/wallpapers/tycho_awake_dark.jpg
-# exec_always wal -i /share/pictures/wallpapers/from-imgur/color-planes.jpg -a 90
-# exec_always wal -i /share/pictures/wallpapers/from-imgur/square-bar.png -a 90
-
 # Lock and sleep
 set $lock-res 20
 set $lock-ico ~/.config/i3/assets/lock.png
@@ -243,9 +235,11 @@ set $lock-ico ~/.config/i3/assets/lock.png
 bindsym $mod+F1 exec ~/.config/i3/lock.sh -s -b -g -o $lock-ico -p -P $lock-res
 bindsym $mod+Mod1+F1 exec systemctl suspend && ~/.config/i3/lock.sh -s -g -b -o $lock-ico -p -P $lock-res
 
-# Sreen brightness controls
-bindsym $mod+Mod1+Up exec light -A 2 # increase screen brightness
-bindsym $mod+Mod1+Down exec light -U 2 # decrease screen brightness
+# Xbacklight controlls
+bindsym $mod+Mod1+Up exec xbacklight +2 # increase screen brightness
+bindsym $mod+Mod1+F12 exec xbacklight -set 100 # increase screen brightness to 100
+bindsym $mod+Mod1+Down exec xbacklight -2 # decrease screen brightness
+bindsym $mod+Mod1+F11 exec xbacklight -set 0 # decrease screen brightness to 0
 
 # Pulse Audio controls
 # bindsym $mod+Mod1+Right exec pactl set-sink-volume 0 +1% #increase sound volume
@@ -259,10 +253,10 @@ bindsym $mod+Mod1+Left exec amixer set Master 1%- #increase sound volume
 bindsym $mod+Mod1+m exec amixer -D pulse set Master 1+ toggle
 
 # bind media keys
-bindcode $mod+110 exec playerctl play
-bindcode $mod+115 exec playerctl pause
-bindcode $mod+117 exec playerctl next
-bindcode $mod+112 exec playerctl previous
+#bindcode $mod+110 exec playerctl play
+#bindcode $mod+115 exec playerctl pause
+#bindcode $mod+117 exec playerctl next
+#bindcode $mod+112 exec playerctl previous
 
 
 # Rofi bind, changed from dmenu
@@ -273,14 +267,23 @@ bindsym $mod+d exec ~/.config/i3/rofi.sh
 
 
 # Start shit on desktop launch
+
+exec_always --no-startup-id nm-applet
+#exec_always --no-startup-id blueman-applet
+
 # exec urxvt
 # exec spotify
 exec urxvt -e ranger
-# exec urxvt -e ~/tmux_scripts/ranger.sh
-# exec urxvt -e ~/tmux_scripts/WeeChat.sh
-exec urxvt -e ~/tmux_scripts/dev.sh
-exec urxvt -e ~/tmux_scripts/rxvt-root.sh
+# exec urxvt -e ~/scripts/ranger.sh
+# exec urxvt -e ~/scripts/WeeChat.sh
+exec urxvt -e ~/scripts/dev.sh
+exec urxvt -e ~/scripts/rxvt-root.sh
 
 # Start compton
 #exec compton --no-fading-openclose
+
+# Set wallpaper
+exec_always wal -i ~/.config/i3/assets/astronaut.jpg
+
+exec restart
 
