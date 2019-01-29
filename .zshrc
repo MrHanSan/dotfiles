@@ -116,8 +116,9 @@ cat << "EOF"
 EOF
 
 if tty | grep pts ; then
+    (cat ~/.cache/wal/sequences &)
     if ! [ -n "$TMUX" ]; then
-        tmux new -s "rxvt-root";
+        tmux new -s "startup-term";
     fi
 else
     echo "not in PTS";
@@ -141,10 +142,11 @@ alias blb="$BROWSER --new-window iblack.sexy &"
 alias yt="$BROWSER --new-window youtube.com &"
 alias br="$BROWSER"
 
-alias netres="sudo ip link set wlp8s0 down && sudo systemctl restart wpa_supplicant@wlp8s0.service && \
-    sudo ip link set wlp8s0 up"
+#alias netres="sudo ip link set wlp8s0 down && sudo systemctl restart wpa_supplicant@wlp8s0.service && \
+#    sudo ip link set wlp8s0 up"
 
 alias ow4="exec ~/tmux_scripts/ow4.sh"
+alias iccube="cd ~/skole/dnd/oving/ && exec docker-compose up"
 
 PATH="${PATH}:${HOME}/.local/bin/"
 

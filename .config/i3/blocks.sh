@@ -26,7 +26,8 @@ _CPUS_ () {
 # Show Memory Usage - 3 (Free)
 _MEM_ () {
 
-    [ -z "$1" ] && icon="" || icon="$1"
+    [ -z "$1" ] && icon="" || icon="$1" #Microchip icon
+    #[ -z "$1" ] && icon="" || icon="$1" #Disk icon
 
     mem_usage=$(free -h | awk '/^Mem:/{print $3"/"$2}');
     echo "$icon $mem_usage"
@@ -58,11 +59,11 @@ _BAT_ () {
     adapt=$(acpi -a | awk '{print $3}');
 
     if [ "$adapt" = "on-line" ];then
-        icon0=""
-        icon1=""
-        icon2=""
-        icon3=""
-        icon4=""
+        icon0=" "
+        icon1=" "
+        icon2=" "
+        icon3=" "
+        icon4=" "
     else
         icon0=""
         icon1=""

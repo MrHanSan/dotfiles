@@ -105,8 +105,8 @@ exec_always --no-startup-id "setxkbmap -layout us,no -option grp:alt_shift_toggl
 #bindsym $mod+d focus child
 set $workspace1 "1:  Terminals"
 set $workspace2 "2:  Browser"
-set $workspace3 "3:  Dev Browser"
-set $workspace4 "4:  Dev Env"
+set $workspace3 "3:  Dev Env"
+set $workspace4 "4:  Dev Browser"
 set $workspace5 "5:  Dev Term"
 set $workspace6 "6:  Nothing"
 set $workspace7 "7:  Chat"
@@ -149,15 +149,12 @@ bindsym $mod+Shift+Tab workspace prev
 assign [class="jetbrains-pycharm"] $workspace4
 assign [class="VirtualBox"] $workspace8
 
+for_window [class="*Visual Studio Code"] move to woekspace $workspace3
 for_window [class="VirtualBox"] layout tabbed
 for_window [class="Spotify"] move to workspace $workspace9
-
-for_window [title="^127.0.0.1"] move to workspace $workspace3
-for_window [title="^dev.sh$"] move to workspace $workspace5
-for_window [title="^WeeChat.sh$"] move to workspace $workspace7
-for_window [title="^WeeChat 1.9.1$"] move to workspace $workspace7
-for_window [title="YouTube$"] move to workspace $workspace9
-for_window [title="^ranger"] move to workspace $workspace10
+for_window [class="^ranger"] move to workspace $workspace10
+for_window [title="Slack*"] move to workspace $workspace7
+for_window [title="YouTube*"] move to workspace $workspace9
 # assign [class="URxvt"] $workspace1
 
 # reload the configuration file
@@ -228,7 +225,11 @@ bar {
     }
 }
 
+# Set border on new window
 new_window none
+
+#set BG and theme
+exec_always wal -i ~/.config/i3/assets/astronaut.jpg
 
 # Lock and sleep
 set $lock-res 20
@@ -239,20 +240,30 @@ bindsym $mod+Mod1+F1 exec systemctl suspend && ~/.config/i3/lock.sh -s -g -b -o 
 
 # Xbacklight controlls
 bindsym $mod+Mod1+Up exec xbacklight +2 # increase screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight +2 # increase screen brightness
+
 bindsym $mod+Mod1+F12 exec xbacklight -set 100 # increase screen brightness to 100
+bindsym $mod+XF86MonBrightnessUp exec xbacklight +25 # increase screen brightness by 25
+
 bindsym $mod+Mod1+Down exec xbacklight -2 # decrease screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -2 # decrease screen brightness
+
 bindsym $mod+Mod1+F11 exec xbacklight -set 0 # decrease screen brightness to 0
+bindsym $mod+XF86MonBrightnessDown exec xbacklight -25 # decrease screen brightness by 25
 
 # Pulse Audio controls
 # bindsym $mod+Mod1+Right exec pactl set-sink-volume 0 +1% #increase sound volume
 bindsym $mod+Mod1+Right exec amixer set Master unmute 1%+ #increase sound volume
+bindsym XF86AudioRaiseVolume exec amixer set Master unmute 1%+ #increase sound volume
 
 #bindsym $mod+Mod1+Left exec pactl set-sink-volume 0 -1% #decrease sound volume
 bindsym $mod+Mod1+Left exec amixer set Master 1%- #increase sound volume
+bindsym XF86AudioLowerVolume exec amixer set Master 1%- #increase sound volume
 
 # bindsym $mod+Mod1+Left+Right exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 #bindsym $mod+Mod1+m exec amixer sset Master mute
 bindsym $mod+Mod1+m exec amixer -D pulse set Master 1+ toggle
+bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle
 
 # bind media keys
 #bindcode $mod+110 exec playerctl play
@@ -275,17 +286,14 @@ exec_always --no-startup-id nm-applet
 
 # exec urxvt
 # exec spotify
-exec urxvt -e ranger
+exec --no-startup-id i3-sensible-terminal --class "ranger" -- ranger
 # exec urxvt -e ~/scripts/ranger.sh
 # exec urxvt -e ~/scripts/WeeChat.sh
-exec urxvt -e ~/scripts/dev.sh
-exec urxvt -e ~/scripts/rxvt-root.sh
 
 # Start compton
 #exec compton --no-fading-openclose
 
-# Set wallpaper
-exec_always wal -i ~/.config/i3/assets/astronaut.jpg
-
-exec restart
+# start some terminals
+exec i3-sensible-terminal -- ~/scripts/startup-term.sh
+exec --no-startup-id i3-msg 'workspace $workspace5; exec i3-sensible-terminal -e ~/scripts/dev.sh; workspace $workspace1'
 
