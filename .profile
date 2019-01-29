@@ -31,6 +31,7 @@ mkdir -p $HOME/.vim/backup
 
 # sh -c "$HOME/programs/setlayout/setlayout 0 2 2 0"
 
-export TERMINAL=urxvt
+#export TERMINAL=urxvt
+export TERMINAL=gnome-terminal
 #export XDG_CURRENT_DESKTOP=Gnome
 
