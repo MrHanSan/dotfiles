@@ -5,9 +5,8 @@
 _CPU_ () {
 
     [ -z "$1" ] && icon="" || icon="$1"
-
-    cpu_usage=$(mpstat -P ALL | awk '/all/{print $5}');
-    echo "$icon $cpu_usage%"
+    cpu_usage=$(mpstat -P ALL | awk '/all/{print $14}' | awk '{gsub(",",".",$0); print 100 - $0}');
+    echo "$icon  $cpu_usage %"
 }
 
 # Show Multi Cpu Info - 2 (Mpstat)
@@ -78,9 +77,9 @@ _BAT_ () {
         bat="$icon4 Full"
     elif [ "$Bat" -gt "90" ];then
         bat="$icon4 $Bat %"
-    elif [ "$Bat" -gt "75" ];then
+    elif [ "$Bat" -gt "70" ];then
         bat="$icon3 $Bat %"
-    elif [ "$Bat" -gt "50" ];then
+    elif [ "$Bat" -gt "40" ];then
         bat="$icon2 $Bat %"
     elif [ "$Bat" -gt "25" ];then
         bat="$icon1 $Bat %"

@@ -124,12 +124,6 @@ else
     echo "not in PTS";
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-
 export LESS='-R'
 export BROWSER='vivaldi'
 
@@ -149,4 +143,8 @@ alias ow4="exec ~/tmux_scripts/ow4.sh"
 alias iccube="cd ~/skole/dnd/oving/ && exec docker-compose up"
 
 PATH="${PATH}:${HOME}/.local/bin/"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
