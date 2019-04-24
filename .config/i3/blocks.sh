@@ -1,5 +1,5 @@
 #!/bin/bash
-# Zakaria Barkouk ( Zakaria.gatter@gmail.com)
+# Original version stolen from https://github.com/zakariaGatter/i3blocks-gate
 
 # Show CPU Info - 1 (Mpstat)
 _CPU_ () {
@@ -197,11 +197,21 @@ _MPD_ () {
 }
 
 #Show Cpu Temp - 15 (xsenser)
+#_TEMP_ () {
+#
+#    [ -z "$1" ] && icon="" || icon="$1"
+#
+#    temp=$(sensors | awk '/^CPU/{print $2}' | tr -d "+" )
+#
+#   echo "$icon $temp"
+#}
+
+#Show Cpu Temp - 15 (lm_sensors)
 _TEMP_ () {
 
     [ -z "$1" ] && icon="" || icon="$1"
 
-    temp=$(sensors | awk '/^CPU/{print $2}' | tr -d "+" )
+    temp=$(sensors | awk '/^Package/{print $4}' | tr -d "+")
 
     echo "$icon $temp"
 }
