@@ -49,6 +49,5 @@ src/
 .config/chromium/*
 .config/sublime-text-3/*
 .config/direnv/*
-
 .config/vivaldi/
 
