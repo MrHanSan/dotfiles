@@ -1,17 +1,30 @@
 #!/usr/bin/env bash
 
-CITY=${1:-trondheim}
-COUNTRY=${2:-NO}
+if [ -z $3 ]; then
+    CITY=${1:-trondheim}
+    CITY='q='$CITY
+    if [ -z $2 ];then
+        COUNTRY=''
+    else
+        COUNTRY=','$2
+    fi
+elif [ $1 = "latlon" ]; then
+    CITY='lat='$2
+    COUNTRY='&lon='$3
+else
+    echo 'Use Blank, city, city and country, or lat lon'
+    echo 'To use lat lon use parameter "latlon [lat] [lon]"'
+fi
 
 CURL='/usr/bin/curl'
-WEATHER_API='http://api.openweathermap.org/data/2.5/forecast?q='$CITY','$COUNTRY'&units=metric&appid=9a453a2833879410c818c814f65aa6d9'
+WEATHER_API='http://api.openweathermap.org/data/2.5/weather?'$CITY$COUNTRY'&units=metric&appid=9a453a2833879410c818c814f65aa6d9'
 CURL_FLAGS='-s'
 JQ='/usr/bin/jq'
 JQ_FLAGS='-r'
 
 all_weather="$($CURL $CURL_FLAGS $WEATHER_API)"
-now_weather="$(echo $all_weather | $JQ $JQ_FLAGS '.list[0].weather[0].icon')"
-now_temp="$(echo $all_weather | $JQ $JQ_FLAGS '.list[0].main')"
+now_weather="$(echo $all_weather | $JQ $JQ_FLAGS '.weather[0].icon')"
+now_temp="$(echo $all_weather | $JQ $JQ_FLAGS '.main')"
 min_temp=$(echo $now_temp | $JQ $JQ_FLAGS '.temp_min')
 max_temp=$(echo $now_temp | $JQ $JQ_FLAGS '.temp_max')
 
