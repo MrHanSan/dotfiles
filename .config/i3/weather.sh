@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-<<<<<<< HEAD
 if [ -z $3 ]; then
     CITY=${1:-trondheim}
     CITY='q='$CITY
