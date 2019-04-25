@@ -1,26 +1,35 @@
 #!/usr/bin/env bash
 
-if [ -z $3 ]; then
+CURL='/usr/bin/curl'
+CURL_FLAGS='-s'
+JQ='/usr/bin/jq'
+JQ_FLAGS='-r'
+
+if [ -z $1 ] ; then
+    CITY='q=trondheim'
+    COUNTRY=''
+elif [ $1 = "-ip" ] || [ $1 = "-i" ] ; then
+    IPINFO=$(dig +short myip.opendns.com @resolver1.opendns.com | (read ip; $CURL $CURL_FLAGS http://ip-api.com/json/$ip))
+    CITY='lat='$(echo $IPINFO | $JQ $JQ_FLAGS '.lat')
+    COUNTRY='&lon='$(echo $IPINFO | $JQ $JQ_FLAGS '.lon')
+elif [ -z $3 ] ; then
     CITY=${1:-trondheim}
     CITY='q='$CITY
-    if [ -z $2 ];then
+    if [ -z $2 ] ; then
         COUNTRY=''
     else
         COUNTRY=','$2
     fi
-elif [ $1 = "latlon" ]; then
+elif [ $1 = "-coord" ] || [ $1 = "-c" ] ; then
     CITY='lat='$2
     COUNTRY='&lon='$3
 else
-    echo 'Use Blank, city, city and country, or lat lon'
-    echo 'To use lat lon use parameter "latlon [lat] [lon]"'
+    echo 'Use Blank, city, city and country, ip, or lat lon'
+    echo 'To use IP use flag "-ip or -i"'
+    echo 'To use lat lon use parameter "-coord or -c [lat] [lon]"'
 fi
 
-CURL='/usr/bin/curl'
 WEATHER_API='http://api.openweathermap.org/data/2.5/weather?'$CITY$COUNTRY'&units=metric&appid=9a453a2833879410c818c814f65aa6d9'
-CURL_FLAGS='-s'
-JQ='/usr/bin/jq'
-JQ_FLAGS='-r'
 
 all_weather="$($CURL $CURL_FLAGS $WEATHER_API)"
 now_weather="$(echo $all_weather | $JQ $JQ_FLAGS '.weather[0].icon')"
