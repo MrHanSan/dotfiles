@@ -3,6 +3,7 @@
 import csv
 import requests
 import json
+import argparse
 from operator import itemgetter
 
 alkohol_data = 'https://www.vinmonopolet.no/medias/sys_master/products/products/hbc/hb0/8834253127710/produkter.csv'
@@ -42,7 +43,6 @@ def calculate_apk(all_wares):
             tmp_dict['price_l'] = row[PRICE_L]
             tmp_dict['type'] = row[WARE_TYPE]
             tmp_dict['stock_type'] = row[PRODUCT_STOCK_TYPE]
-            tmp_dict['category'] = row[SHOP_CATEGORY]
             tmp_dict['url'] = row[WARE_URL]
             apk_wares.append(tmp_dict)
         except Exception as e:
@@ -59,11 +59,11 @@ def sort_to_cat(wares):
 
     for row in wares:
         alk = float(row['alk'].replace(',', '.'))
-        if alk < 4:
+        if alk < 5:
             categories['low_alk'].append(row)
-        elif alk >=4 and alk < 12:
+        elif alk >= 5 and alk < 10:
             categories['med_alk'].append(row)
-        elif alk >= 12 and alk < 22:
+        elif alk >= 10 and alk < 22:
             categories['med_high_alk'].append(row)
         else:
             categories['high_alk'].append(row)
@@ -77,10 +77,20 @@ def write_to_file(categories):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', dest='save', default=False, help='Save all output to file')
+    parser.add_argument('-n', dest='amount', default=2, help='Amount of wares to display in each category in the commandline')
+    args = parser.parse_args()
     all_wares = download_data()
     apk_wares = calculate_apk(all_wares)
     sorted_wares = sorted(apk_wares, key=itemgetter('apk'), reverse=True)
     categories = sort_to_cat(sorted_wares)
-    write_to_file(categories)
+    if args.save:
+        write_to_file(categories)
+    for key, value in categories.items():
+        print(key)
+        for item in value[:int(args.amount)]:
+            print('{}'.format(item))
+        print()
 
 main()
