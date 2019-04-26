@@ -4,6 +4,7 @@ CURL='/usr/bin/curl'
 CURL_FLAGS='-s'
 JQ='/usr/bin/jq'
 JQ_FLAGS='-r'
+API_KEY='9a453a2833879410c818c814f65aa6d9'
 
 if [ -z $1 ] ; then
     CITY='q=trondheim'
@@ -29,7 +30,7 @@ else
     echo 'To use lat lon use parameter "-coord or -c [lat] [lon]"'
 fi
 
-WEATHER_API='http://api.openweathermap.org/data/2.5/weather?'$CITY$COUNTRY'&units=metric&appid=9a453a2833879410c818c814f65aa6d9'
+WEATHER_API='http://api.openweathermap.org/data/2.5/weather?'$CITY$COUNTRY'&units=metric&appid='$API_KEY
 
 all_weather="$($CURL $CURL_FLAGS $WEATHER_API)"
 now_weather="$(echo $all_weather | $JQ $JQ_FLAGS '.weather[0].icon')"
