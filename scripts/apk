@@ -33,6 +33,8 @@ def calculate_apk(all_wares):
         try:
             if float(row[ALK].replace(',', '.')) < 1.0:
                 continue
+            if row[PRODUCT_STOCK_TYPE].lower() == 'bestillingsutvalget':
+                continue
             tmp_dict = {}
             tmp_dict['ware_nr'] = row[WARE_NR]
             tmp_dict['name'] = row[WARE_NAME]
@@ -42,7 +44,6 @@ def calculate_apk(all_wares):
             tmp_dict['price'] = row[WARE_PRICE]
             tmp_dict['price_l'] = row[PRICE_L]
             tmp_dict['type'] = row[WARE_TYPE]
-            tmp_dict['stock_type'] = row[PRODUCT_STOCK_TYPE]
             tmp_dict['url'] = row[WARE_URL]
             apk_wares.append(tmp_dict)
         except Exception as e:
