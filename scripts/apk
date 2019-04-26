@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+
+import csv
+import requests
+import json
+from operator import itemgetter
+
+alkohol_data = 'https://www.vinmonopolet.no/medias/sys_master/products/products/hbc/hb0/8834253127710/produkter.csv'
+WARE_NR = 1
+WARE_NAME = 2
+WARE_VOL = 3
+WARE_PRICE = 4
+PRICE_L = 5
+WARE_TYPE = 6
+PRODUCT_STOCK_TYPE = 7
+SHOP_CATEGORY = 8
+ALK = 26
+WARE_URL = 35
+
+def download_data():
+    with requests.Session() as session:
+        data = session.get(alkohol_data)
+        decoded_data = data.content.decode('latin1')
+
+        csv_reader = csv.reader(decoded_data.splitlines(), delimiter=';')
+        return list(csv_reader)
+
+
+def calculate_apk(all_wares):
+    apk_wares = []
+    for row in all_wares:
+        try:
+            if float(row[ALK].replace(',', '.')) < 1.0:
+                continue
+            tmp_dict = {}
+            tmp_dict['ware_nr'] = row[WARE_NR]
+            tmp_dict['name'] = row[WARE_NAME]
+            tmp_dict['apk'] = (float(row[ALK].replace(',', '.'))/float(row[PRICE_L].replace(',', '.'))*100)
+            tmp_dict['vol'] = row[WARE_VOL]
+            tmp_dict['alk'] = row[ALK]
+            tmp_dict['price'] = row[WARE_PRICE]
+            tmp_dict['price_l'] = row[PRICE_L]
+            tmp_dict['type'] = row[WARE_TYPE]
+            tmp_dict['stock_type'] = row[PRODUCT_STOCK_TYPE]
+            tmp_dict['category'] = row[SHOP_CATEGORY]
+            tmp_dict['url'] = row[WARE_URL]
+            apk_wares.append(tmp_dict)
+        except Exception as e:
+            print(e)
+    return apk_wares
+    
+
+def sort_to_cat(wares):
+    categories = {}
+    categories['low_alk'] = []
+    categories['med_alk'] = []
+    categories['med_high_alk'] = []
+    categories['high_alk'] = []
+
+    for row in wares:
+        alk = float(row['alk'].replace(',', '.'))
+        if alk < 4:
+            categories['low_alk'].append(row)
+        elif alk >=4 and alk < 12:
+            categories['med_alk'].append(row)
+        elif alk >= 12 and alk < 22:
+            categories['med_high_alk'].append(row)
+        else:
+            categories['high_alk'].append(row)
+    return categories
+
+
+def write_to_file(categories):
+    with open('apk_data.json', 'w') as apk_file:
+        json.dump(categories, apk_file, indent=4)
+
+
+
+def main():
+    all_wares = download_data()
+    apk_wares = calculate_apk(all_wares)
+    sorted_wares = sorted(apk_wares, key=itemgetter('apk'), reverse=True)
+    categories = sort_to_cat(sorted_wares)
+    write_to_file(categories)
+
+main()
