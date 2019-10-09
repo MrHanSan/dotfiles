@@ -48,18 +48,18 @@ elif [ $now_weather = "02n" ] || [ $now_weather = "03n" ] ; then
     icon="" #Some clouds moon
 elif [ $now_weather = "04d" ] || [ $now_weather = "04n" ] ; then
     icon="" #Cloud
-elif [ $now_weather = "11d" ] ; then
+elif [ $now_weather = "11d" ] || [ $now_weather = "11n" ] ; then
     icon="" #Lightningbolt
-elif [ $now_weather = "09d" ] ; then
+elif [ $now_weather = "09d" ] || [ $now_weather = "09n" ] ; then
     icon="" #Drizzle
-elif [ $now_weather = "10d" ] ; then
+elif [ $now_weather = "10d" ] || [ $now_weather = "10n" ] ; then
     icon="" #Rain
 elif [ $now_weather = "13d" ] || [ $now_weather = "13n" ] ; then
     icon="" #Snow
-elif [ $now_weather = "50d" ] ; then
+elif [ $now_weather = "50d" ] || [ $now_weather = "50n" ] ; then
     icon="" #Fog/ dust/ haze/ mist
 else
-    icon="??" # Unknown/ check speck
+    icon="??" # Unknown/ check https://openweathermap.org/weather-conditions
 fi
 
 #low_temp=$(echo $min_temp | awk '{split($0, a, "."); print int(a[1])}')
