@@ -34,4 +34,5 @@ mkdir -p $HOME/.vim/backup
 #export TERMINAL=urxvt
 export TERMINAL=gnome-terminal
 #export XDG_CURRENT_DESKTOP=Gnome
+export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
 
