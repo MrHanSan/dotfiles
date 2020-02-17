@@ -15,9 +15,9 @@ pane=${window}.0
 
 tmux send-keys -t "$pane" "clear" enter
 
-if ! [ -n "$TMUX" ] ; then
-    tmux a -t dev
-else
-    echo "You are already in a tmux sesion"
-fi
+#if ! [ -n "$TMUX" ] ; then
+#    tmux a -t dev
+#else
+#    echo "You are already in a tmux sesion"
+#fi
 

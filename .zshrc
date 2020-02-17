@@ -99,8 +99,8 @@ fi
 
 
 # for setting history length see HISTSIZE and HISTFILESIZE in zsh
-HISTSIZE=100000
-HISTFILESIZE=20000
+HISTSIZE=1000000
+HISTFILESIZE=2000000
 
 
 #login art
@@ -148,3 +148,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export EDITOR=vim
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/hans/.sdkman"
+[[ -s "/home/hans/.sdkman/bin/sdkman-init.sh" ]] && source "/home/hans/.sdkman/bin/sdkman-init.sh"
