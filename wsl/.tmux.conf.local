@@ -65,21 +65,21 @@ tmux_conf_24b_colour=false
 #tmux_conf_theme_colour_17="#e4e4e4"   # white
 
 # default theme (ansi)
-tmux_conf_theme_colour_1="colour8" # default: 0
-tmux_conf_theme_colour_2="colour7" # default: 8
-tmux_conf_theme_colour_3="colour7" # default: 8
+tmux_conf_theme_colour_1="colour0" # default: 0
+tmux_conf_theme_colour_2="colour8" # default: 8
+tmux_conf_theme_colour_3="colour8" # default: 8
 tmux_conf_theme_colour_4="colour14" # default: 14
 tmux_conf_theme_colour_5="colour11" # default: 11
-tmux_conf_theme_colour_6="colour8" # default: 0
+tmux_conf_theme_colour_6="colour0" # default: 0
 tmux_conf_theme_colour_7="colour15" # default: 15
-tmux_conf_theme_colour_8="colour8" # default: 0
+tmux_conf_theme_colour_8="colour0" # default: 0
 tmux_conf_theme_colour_9="colour11" # default: 11
 tmux_conf_theme_colour_10="colour13" # default: 13
 tmux_conf_theme_colour_11="colour10" # default: 10
-tmux_conf_theme_colour_12="colour7" # default: 8
+tmux_conf_theme_colour_12="colour8" # default: 8
 tmux_conf_theme_colour_13="colour15" # default: 15
-tmux_conf_theme_colour_14="colour8" # default: 0
-tmux_conf_theme_colour_15="colour8" # default: 0
+tmux_conf_theme_colour_14="colour0" # default: 0
+tmux_conf_theme_colour_15="colour0" # default: 0
 tmux_conf_theme_colour_16="colour1" # default: 1
 tmux_conf_theme_colour_17="colour15" # default: 15
 
@@ -220,7 +220,7 @@ tmux_conf_theme_right_separator_sub="\uE0B3"  #   PowerlineSymbols.otf font, see
 tmux_conf_theme_status_left=" ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} "
 #tmux_conf_theme_status_right="#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_percentage, #{battery_percentage},} ,  %R ,  %d %b %V | #{username}#{root} | #{hostname} "
 
-tmux_conf_theme_status_right="#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} ,  %R ,  %d %b  %V , #{drizzle} , #{covid} | #{username}#{root} | #{hostname} "
+tmux_conf_theme_status_right="#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} ,  %R ,  %d %b  %V , #{drizzle} | #{username}#{root} | #{hostname} "
 
 # status left style
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_8"
@@ -357,7 +357,7 @@ tmux_conf_copy_to_os_clipboard=false
 # }
 #
 # drizzle() {
-#   sh -c ~/.config/i3/weather.sh; sleep 900
+#   sh -c ~/scripts/weather.sh; sleep 900
 # }
 #
 # covid() {
