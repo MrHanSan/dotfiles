@@ -58,6 +58,7 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 syntax on
+let g:vim_json_conceal=0
 
 " 1 or 0 -> blinking block
 " 2 -> solid block

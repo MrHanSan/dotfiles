@@ -6,15 +6,12 @@ JQ='/usr/bin/jq'
 JQ_FLAGS='-r'
 API_KEY='9a453a2833879410c818c814f65aa6d9'
 
-if [ -z $1 ] ; then
-    CITY='q=trondheim'
-    COUNTRY=''
-elif [ $1 = "-ip" ] || [ $1 = "-i" ] ; then
+if [ "$1" = "-ip" ] || [ "$1" = "-i" ] || [ -z $1 ] ; then
     IPINFO=$(dig +short myip.opendns.com @resolver1.opendns.com | (read ip; $CURL $CURL_FLAGS http://ip-api.com/json/$ip))
     CITY='lat='$(echo $IPINFO | $JQ $JQ_FLAGS '.lat')
     COUNTRY='&lon='$(echo $IPINFO | $JQ $JQ_FLAGS '.lon')
 elif [ -z $3 ] ; then
-    CITY=${1:-trondheim}
+    CITY=${1:-oslo}
     CITY='q='$CITY
     if [ -z $2 ] ; then
         COUNTRY=''
@@ -26,7 +23,7 @@ elif [ $1 = "-coord" ] || [ $1 = "-c" ] ; then
     COUNTRY='&lon='$3
 else
     echo 'Use Blank, city, city and country, ip, or lat lon'
-    echo 'To use IP use flag "-ip or -i"'
+    echo 'To use IP use flag "-ip or -i or no flag"'
     echo 'To use lat lon use parameter "-coord or -c [lat] [lon]"'
 fi
 

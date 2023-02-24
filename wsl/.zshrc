@@ -1,4 +1,4 @@
-#login art
+# login art
 cat << "EOF"
 ██╗  ██╗███████╗██╗     ██╗      ██████╗        ███████╗███████╗██╗  ██╗   
 ██║  ██║██╔════╝██║     ██║     ██╔═══██╗       ╚══███╔╝██╔════╝██║  ██║██╗
@@ -28,14 +28,33 @@ source ~/.local/share/bash-completion/completions/_switch.bash
 
 export EDITOR=vim
 export LESS='-R'
-
 alias python="python3"
-alias drizzle="$HOME/scripts/weather.sh"
-alias explorer="explorer.exe"
-alias vstudio="/mnt/c/Program\ Files\ \(x86\)/Microsoft\ Visual\ Studio/2019/Community/Common7/IDE/devenv.exe"
+alias cal="ncal -b"
 
+alias drizzle="$HOME/scripts/weather.sh"
+alias yr="$HOME/scripts/weather.sh"
+alias explorer="explorer.exe"
+alias ge="git.exe"
+alias vstudio="/mnt/c/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/Common7/IDE/devenv.exe"
+alias s3="/mnt/c/Program\ Files/CloudBerryLab/CloudBerry\ Explorer/CloudBerry\ Explorer.exe &"
+
+alias grepex="grep -rnI --exclude-dir={node_modules,bin,obj,.git,Content,Dok,fonts,help_en,help_no,Images,Logs,Scripts,.data,resources-build,lib,help,dist}"
+function ffind { find -type f -name "*$1*"; }
 alias kgags="kubectl get ags"
+alias kgagsoy="kubectl get ags -o yaml"
 function kdagsw() { watch "kubectl describe ags $1 | tail"; }
+function kdpw() { watch "kubectl describe pod $1 | tail"; }
+
+alias glb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(color:blue)%(authorname)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))'"
+alias glbr="git for-each-ref --sort=-committerdate refs/remotes/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(color:blue)%(authorname)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))'"
+
+alias inat="~/scripts/inat.sh"
+alias nve="~/scripts/nve.sh"
+alias las="~/scripts/las.sh"
+alias dd="~/scripts/dd.sh"
+alias nib="~/scripts/nib.sh"
+
+alias arcpy='powershell.exe "C:\Users\hanss\AppData\Local\ESRI\conda\envs\arcgispro-py3-clone\python.exe"'
 
 source ${HOME}/.kube/export-kubeconfig
 source /usr/local/bin/switch.sh
