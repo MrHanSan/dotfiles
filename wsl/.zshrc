@@ -27,6 +27,7 @@ bashcompinit
 source ~/.local/share/bash-completion/completions/_switch.bash
 
 export EDITOR=vim
+export SYSTEMD_EDITOR=vim
 export LESS='-R'
 alias python="python3"
 alias cal="ncal -b"
@@ -38,12 +39,13 @@ alias ge="git.exe"
 alias vstudio="/mnt/c/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/Common7/IDE/devenv.exe"
 alias s3="/mnt/c/Program\ Files/CloudBerryLab/CloudBerry\ Explorer/CloudBerry\ Explorer.exe &"
 
-alias grepex="grep -rnI --exclude-dir={node_modules,bin,obj,.git,Content,Dok,fonts,help_en,help_no,Images,Logs,Scripts,.data,resources-build,lib,help,dist}"
+alias grepex="grep -rnI --exclude-dir={node_modules,bin,obj,.git,Content,Dok,fonts,help_en,help_no,Images,Logs,Scripts,.data,resources-build,lib,help,dist,.vs,build}"
 function ffind { find -type f -name "*$1*"; }
 alias kgags="kubectl get ags"
 alias kgagsoy="kubectl get ags -o yaml"
 function kdagsw() { watch "kubectl describe ags $1 | tail"; }
 function kdpw() { watch "kubectl describe pod $1 | tail"; }
+alias ksw=switch
 
 alias glb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(color:blue)%(authorname)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias glbr="git for-each-ref --sort=-committerdate refs/remotes/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(color:blue)%(authorname)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))'"
