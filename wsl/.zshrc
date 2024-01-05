@@ -46,6 +46,7 @@ alias kgagsoy="kubectl get ags -o yaml"
 function kdagsw() { watch "kubectl describe ags $1 | tail"; }
 function kdpw() { watch "kubectl describe pod $1 | tail"; }
 alias ksw=switch
+alias kgagsi="kubectl get ags -o jsonpath=\"{range .items[*]}{.metadata.namespace}{' '}{.metadata.name}{'  '}{.spec.ArcGIS.Docker.baseImage}{':'}{.spec.ArcGIS.Docker.baseImageTag}{'\n'}{end}\""
 
 alias glb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(color:blue)%(authorname)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias glbr="git for-each-ref --sort=-committerdate refs/remotes/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(color:blue)%(authorname)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))'"
@@ -55,12 +56,19 @@ alias nve="~/scripts/nve.sh"
 alias las="~/scripts/las.sh"
 alias dd="~/scripts/dd.sh"
 alias nib="~/scripts/nib.sh"
+alias hre="~/scripts/hre.sh"
 
 alias arcpy='powershell.exe "C:\Users\hanss\AppData\Local\ESRI\conda\envs\arcgispro-py3-clone\python.exe"'
 
-source ${HOME}/.kube/export-kubeconfig
-source /usr/local/bin/switch.sh
-switch .
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(gptcli alias)"
+
+source <(switcher init zsh)
+source <(compdef _switcher switch)
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -128,11 +136,6 @@ HISTFILESIZE=2000000
 eval "$(direnv hook zsh)"
 
 PATH="${PATH}:${HOME}/.local/bin/"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
