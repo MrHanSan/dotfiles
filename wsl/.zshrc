@@ -57,6 +57,7 @@ alias las="~/scripts/las.sh"
 alias dd="~/scripts/dd.sh"
 alias nib="~/scripts/nib.sh"
 alias hre="~/scripts/hre.sh"
+alias tnds="tmux new -ds"
 
 alias arcpy='powershell.exe "C:\Users\hanss\AppData\Local\ESRI\conda\envs\arcgispro-py3-clone\python.exe"'
 
