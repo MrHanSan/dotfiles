@@ -38,6 +38,9 @@ alias explorer="explorer.exe"
 alias ge="git.exe"
 alias vstudio="/mnt/c/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/Common7/IDE/devenv.exe"
 alias s3="/mnt/c/Program\ Files/CloudBerryLab/CloudBerry\ Explorer/CloudBerry\ Explorer.exe &"
+alias wnode="/mnt/c/Program\ Files/nodejs/node.exe"
+alias wnpm="/mnt/c/Program\ Files/nodejs/npm"
+alias wnpx="/mnt/c/Program\ Files/nodejs/npx"
 
 alias grepex="grep -rnI --exclude-dir={node_modules,bin,obj,.git,Content,Dok,fonts,help_en,help_no,Images,Logs,Scripts,.data,resources-build,lib,help,dist,.vs,build}"
 function ffind { find -type f -name "*$1*"; }
