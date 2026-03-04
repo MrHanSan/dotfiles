@@ -2,46 +2,6 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Vundle plugins
-Plugin 'VundleVim/Vundle.vim' " Vundle manages Vundle
-Plugin 'airblade/vim-gitgutter' " GitGutter diff while you diff
-Plugin 'scrooloose/nerdtree' " File Tree in vim
-Plugin 'Xuyuanp/nerdtree-git-plugin' " Git flag for file tree
-Plugin 'ervandew/supertab' " Tab complete all the things
-Plugin 'bling/vim-bufferline' " Buffer interface
-Plugin 'Raimondi/delimitMate' " Auto-close
-Plugin 'alvan/vim-closetag' " Close HTML tags
-Plugin 'w0rp/ale' " Async Lint Engine
-Plugin 'Yggdroot/indentLine' " Indentation level display
-
-call vundle#end()
-filetype plugin indent on
-
-" Plugin Configs
-" nerdtree
-" Start nerdtree
-autocmd vimenter * NERDTree
-" show hidden
-let NERDTreeShowHidden=1
-" close if nerdtree is last
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" select editor window
-autocmd VimEnter * wincmd w
-
-" ale
-let g:ale_sign_column_always = 1
-let g:airline#extensions#ale#enabled = 1
-
-" ale linters
-"let g:ale_fixers = {
-"\   'javascript': ['eslint'],
-"\   'python': ['flake8'],
-"\}
-"let g:ale_fix_on_save = 0
-
 set list
 set listchars=tab:┊\
 
@@ -67,16 +27,19 @@ let g:vim_json_conceal=0
 " 5 -> blinking vertical bar
 " 6 -> solid vertical bar
 
-if &term == 'rxvt-unicode-256color'
-    let &t_SI = "\<Esc>[5 q"
-    let &t_EI = "\<Esc>[1 q"
-endif
+" change the cursor between Normal and Insert modes in Vim
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 
-if exists('$TMUX')
-    set term=screen-256color
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[1 q\<Esc>\\"
-endif
+" reset the cursor on start (for older versions of vim, usually not required)
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
+
+set ttimeout
+set ttimeoutlen=1
+set ttyfast
 
 set undofile
 set undodir=~/.vim/undo

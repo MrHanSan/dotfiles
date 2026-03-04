@@ -51,3 +51,4 @@ src/
 .config/direnv/*
 .config/vivaldi/
 
+**/.zsh_hist

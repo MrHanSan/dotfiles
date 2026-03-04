@@ -24,7 +24,11 @@ fi
 fpath=($fpath /usr/share/zsh/vendor-completions)
 autoload bashcompinit
 bashcompinit
-source ~/.local/share/bash-completion/completions/_switch.bash
+
+token=""
+
+export OPENAI_API_KEY=""
+export AWS_REGION=eu-north-1
 
 export EDITOR=vim
 export SYSTEMD_EDITOR=vim
@@ -41,15 +45,32 @@ alias s3="/mnt/c/Program\ Files/CloudBerryLab/CloudBerry\ Explorer/CloudBerry\ E
 alias wnode="/mnt/c/Program\ Files/nodejs/node.exe"
 alias wnpm="/mnt/c/Program\ Files/nodejs/npm"
 alias wnpx="/mnt/c/Program\ Files/nodejs/npx"
+alias "??"="copilot -p"
+alias "co"="copilot"
+alias "cop"="copilot -p"
 
-alias grepex="grep -rnI --exclude-dir={node_modules,bin,obj,.git,Content,Dok,fonts,help_en,help_no,Images,Logs,Scripts,.data,resources-build,lib,help,dist,.vs,build}"
+alias grepex="grep -rnI --exclude-dir={node_modules,bin,obj,.git,Content,Dok,fonts,help_en,help_no,Images,Logs,Scripts,.data,resources-build,lib,help,dist,.vs,build,target,.idea}"
 function ffind { find -type f -name "*$1*"; }
 alias kgags="kubectl get ags"
 alias kgagsoy="kubectl get ags -o yaml"
+alias kgpoy="kubectl get pod -o yaml"
+alias kgdoy="kubectl get deploy -o yaml"
 function kdagsw() { watch "kubectl describe ags $1 | tail"; }
 function kdpw() { watch "kubectl describe pod $1 | tail"; }
 alias ksw=switch
+alias kns="switch ns"
+alias knsa="switch ns agek"
 alias kgagsi="kubectl get ags -o jsonpath=\"{range .items[*]}{.metadata.namespace}{' '}{.metadata.name}{'  '}{.spec.ArcGIS.Docker.baseImage}{':'}{.spec.ArcGIS.Docker.baseImageTag}{'\n'}{end}\""
+alias kf="kubectl-fauna"
+alias kgpst="kubectl get pod --sort-by=.status.startTime"
+function kld { kubectl logs deployment/$1 }
+function kldf { kubectl logs deployment/$1 -f }
+function kldm { kubectl logs deployment/$1 -c main-container }
+function kldm { kubectl logs deployment/$1 -c main-container -f }
+
+
+export TERM=xterm-256color
+export KUBE_EDITOR=nvim
 
 alias glb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(color:blue)%(authorname)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias glbr="git for-each-ref --sort=-committerdate refs/remotes/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(color:blue)%(authorname)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))'"
@@ -60,6 +81,8 @@ alias las="~/scripts/las.sh"
 alias dd="~/scripts/dd.sh"
 alias nib="~/scripts/nib.sh"
 alias hre="~/scripts/hre.sh"
+alias saas="~/scripts/saas.sh"
+alias soi="~/scripts/soi.sh"
 alias tnds="tmux new -ds"
 
 alias arcpy='powershell.exe "C:\Users\hanss\AppData\Local\ESRI\conda\envs\arcgispro-py3-clone\python.exe"'
@@ -69,10 +92,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-eval "$(gptcli alias)"
-
 source <(switcher init zsh)
 source <(compdef _switcher switch)
+source <(switch completion zsh)
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -105,9 +127,12 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git
     aws
     kubectl
+    kube-ps1
     docker
     docker-compose
 )
+
+PROMPT='$(kube_ps1)'$PROMPT # or RPROMPT='$(kube_ps1)'
 
 source $ZSH/oh-my-zsh.sh
 
@@ -139,7 +164,13 @@ HISTFILESIZE=2000000
 
 eval "$(direnv hook zsh)"
 
+PATH="$PATH:/usr/local/go/bin"
 PATH="${PATH}:${HOME}/.local/bin/"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
